@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Props</title>
+    <style>
+        .container{
+            padding: 1.5rem;
+            border: 2px solid black;
+
+
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <script type="text/babel">
+        const divRoot = document.getElementById("root");
+        const root = ReactDOM.createRoot(divRoot);
+        const test = ["Harina", "Grasa", "Agua", "Sal", "Levadura"];
+        /*Existen 3 props especiales en REACT: 
+        Key
+        Children
+        Ref
+        */
+        function Hola({nombre, children}){
+            return(
+                <div className = "container">
+                    <h2>Bemvindo, {nombre}!</h2>
+                    {children}
+                    <p>Acá termina el componente.</p>
+                </div>
+            );
+        }
+
+        const app = (
+        <>
+            <Hola nombre="Joao">
+                <h3>Elemento fuera del componente</h3>
+            </Hola>
+            <h1>Ingredientes</h1>
+            <hr></hr>
+            <ul>{test.map((ing, i) => (
+                <li key={ing + i}>{ing}</li>
+                ))}
+            </ul>
+        </>);
+        root.render(app);
+    </script> 
+</body>
+</html>
